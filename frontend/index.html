@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Games13 — Auth + Home</title>
+  <style>
+    /* ===== Reset ===== */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg,#2a00b7,#42006c);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      max-width: 450px;
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+
+    .page.active { display: block; }
+
+    h2 { text-align:center; margin-bottom:20px; }
+
+    .input-group { margin-bottom:15px; }
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      width:100%;
+      padding:10px;
+      border:none;
+      border-radius:8px;
+      background:#ff6f61;
+      color:#fff;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover { background:#ff4a3d; }
+
+    .link { color:#ffd369; cursor:pointer; display:block; margin-top:10px; text-align:center; }
+
+    /* ===== Home Page UI ===== */
+    .topbar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:linear-gradient(135deg,#5a00c7,#7a00a9);
+      padding:10px 15px;
+      border-radius:8px;
+    }
+    .topbar h3 { margin:0; font-size:18px; }
+    .topbar i { font-size:20px; cursor:pointer; }
+
+    .banner {
+      background:#00aaff;
+      color:#fff;
+      padding:10px;
+      text-align:center;
+      font-weight:bold;
+      border-radius:8px;
+      margin:15px 0;
+    }
+
+    .game-card img {
+      width:100%;
+      border-radius:10px;
+      margin-bottom:15px;
+    }
+
+    .options {
+      display:flex;
+      justify-content:space-between;
+      margin:15px 0;
+    }
+    .option {
+      flex:1;
+      margin:0 5px;
+      background:linear-gradient(135deg,#ff512f,#dd2476);
+      border-radius:10px;
+      padding:15px;
+      text-align:center;
+      font-size:14px;
+      font-weight:bold;
+      color:#fff;
+    }
+
+    .refer img {
+      width:100%;
+      border-radius:10px;
+      margin:15px 0;
+    }
+
+    .bottom-nav {
+      display:flex;
+      justify-content:space-around;
+      padding:10px 0;
+      background:#3a0066;
+      border-radius:10px;
+    }
+    .bottom-nav div {
+      text-align:center;
+      font-size:14px;
+      cursor:pointer;
+    }
+    .bottom-nav div i { display:block; font-size:18px; margin-bottom:5px; }
+
+    .logout-btn {
+      margin-top:15px;
+      background:#ff3333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="page active">
+    <h2>Login</h2>
+    <div class="input-group">
+      <input type="email" id="loginEmailInput" placeholder="Email" required />
+    </div>
+    <div class="input-group">
+      <input type="password" id="loginPasswordInput" placeholder="Password" required />
+    </div>
+    <button id="loginBtn">Login</button>
+    <div class="link" id="toSignup">Create an account</div>
+  </div>
+
+  <!-- Signup Page -->
+  <div id="profileCompletionPage" class="page">
+    <h2>Sign Up</h2>
+    <div class="input-group">
+      <input type="text" id="fullNameInput" placeholder="Full Name" required />
+    </div>
+    <div class="input-group">
+      <input type="email" id="emailInput" placeholder="Email" required />
+    </div>
+    <div class="input-group">
+      <input type="password" id="signupPasswordInput" placeholder="Create Password" required />
+    </div>
+    <div class="input-group">
+      <input type="text" id="inviteCodeInput" placeholder="Invite Code (optional)" />
+    </div>
+    <div class="input-group">
+      <label><input type="checkbox" id="termsCheckbox"> I accept Terms & Conditions</label>
+    </div>
+    <button id="profileNextBtn">Sign Up</button>
+    <div class="link" id="toLogin">Already have an account?</div>
+  </div>
+
+  <!-- Home Page -->
+  <div id="appPage" class="page">
+    <!-- Topbar -->
+    <div class="topbar">
+      <i>☰</i>
+      <h3>Home</h3>
+      <i>🔔</i>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+      మీకు గేమ్ ఎలా ఆడాలి అని తెలియడం లేదా? <br>
+      అయితే ఇక్కడ క్లిక్ చేసి పూర్తి వీడియో చూడండి
+    </div>
+
+    <!-- Game Image -->
+    <div class="game-card">
+      <img src="https://i.ibb.co/ZVbS1fF/ludo.jpg" alt="Ludo Game">
+    </div>
+
+    <!-- Options -->
+    <div class="options">
+      <div class="option">Scratch & WIN</div>
+      <div class="option">ADD COIN</div>
+      <div class="option">WITHDRAW</div>
+    </div>
+
+    <!-- Refer & Earn -->
+    <div class="refer">
+      <img src="https://i.ibb.co/JtFYJjQ/refer.jpg" alt="Refer & Earn">
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div><i>👤</i>My Profile</div>
+      <div><i>💰</i>My Wallet</div>
+      <div><i>❓</i>Contact Us</div>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </div>
+
+  <script>
+    // Switch pages
+    const loginPage = document.getElementById("loginPage");
+    const signupPage = document.getElementById("profileCompletionPage");
+    const appPage = document.getElementById("appPage");
+
+    document.getElementById("toSignup").addEventListener("click", ()=>{
+      loginPage.classList.remove("active");
+      signupPage.classList.add("active");
+    });
+
+    document.getElementById("toLogin").addEventListener("click", ()=>{
+      signupPage.classList.remove("active");
+      loginPage.classList.add("active");
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", ()=>{
+      appPage.classList.remove("active");
+      loginPage.classList.add("active");
+    });
+
+    // ===== Signup =====
+    document.getElementById("profileNextBtn").addEventListener("click", async ()=>{
+      const fullName = document.getElementById("fullNameInput").value.trim();
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("signupPasswordInput").value.trim();
+      const inviteCode = document.getElementById("inviteCodeInput").value.trim();
+      const termsChecked = document.getElementById("termsCheckbox").checked;
+
+      if(!fullName || !email || !password){
+        alert("Please fill all required fields");
+        return;
+      }
+      if(!validateEmail(email)){
+        alert("Please enter a valid email address");
+        return;
+      }
+      if(!termsChecked){
+        alert("Please accept Terms & Conditions");
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:3000/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fullName, email, password, inviteCode })
+        });
+
+        const data = await res.json();
+        alert(data.message);
+
+        if(res.ok){
+          signupPage.classList.remove("active");
+          appPage.classList.add("active");
+        }
+      } catch(err){
+        console.error(err);
+        alert("Signup failed. Check server.");
+      }
+    });
+
+    // ===== Login =====
+    document.getElementById("loginBtn").addEventListener("click", async ()=>{
+      const email = document.getElementById("loginEmailInput").value.trim();
+      const password = document.getElementById("loginPasswordInput").value.trim();
+
+      if(!email || !password){
+        alert("Please enter email and password");
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if(res.ok){
+          loginPage.classList.remove("active");
+          appPage.classList.add("active");
+        } else {
+          alert(data.message);
+        }
+      } catch(err){
+        console.error(err);
+        alert("Login failed. Check server.");
+      }
+    });
+
+    // ===== Email Validation =====
+    function validateEmail(email){
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+  </script>
+</body>
+</html>
+
